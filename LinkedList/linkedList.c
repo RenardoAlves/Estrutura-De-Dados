@@ -8,9 +8,9 @@ typedef struct Node {
 
 typedef struct {
     Node *first;
-} List;
+} LinkedList;
 
-void insertStart (int n, List *list) {
+void insertStart (int n, LinkedList *list) {
     Node *new = malloc(sizeof(Node));
 
     new->value = n;
@@ -24,7 +24,7 @@ void insertStart (int n, List *list) {
     }
 }
 
-void insertEnd (int n, List *list) {
+void insertEnd (int n, LinkedList *list) {
     Node *new = malloc(sizeof(Node));
 
     new->value = n;
@@ -43,7 +43,7 @@ void insertEnd (int n, List *list) {
     }
 }
 
-void insertIndex (int n, int index, List *list) {
+void insertIndex (int n, int index, LinkedList *list) {
     Node *new = malloc(sizeof(Node));
 
     new->value = n;
@@ -59,7 +59,7 @@ void insertIndex (int n, int index, List *list) {
     actual->next = new;
 }
 
-void removeIndex (int index, List *list) {
+void removeIndex (int index, LinkedList *list) {
 
     if (index == 0) {
         Node *remove = list->first;
@@ -81,7 +81,7 @@ void removeIndex (int index, List *list) {
     free(remove);
 }
 
-void printList (List list) {
+void printList (LinkedList list) {
     Node *actual = list.first;
 
     while (actual != NULL) {
@@ -92,7 +92,7 @@ void printList (List list) {
 }
 
 int main () {
-    List list01;
+    LinkedList list01;
     list01.first = NULL;
 
     insertStart(1, &list01);
