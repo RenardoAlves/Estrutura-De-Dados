@@ -51,12 +51,34 @@ void insertIndex (int n, int index, List *list) {
 
     Node *actual = list->first;
 
-    for (int i = 0; i < index -1 ; i++) {
+    for (int i = 0; i < index - 1; i++) {
         actual = actual->next;
     }
 
     new->next = actual->next;
     actual->next = new;
+}
+
+void removeIndex (int index, List *list) {
+
+    if (index == 0) {
+        Node *remove = list->first;
+        list->first = list->first->next;
+        free(remove);
+        return;
+    }
+
+    Node *actual = list->first;
+
+    for (int i = 0; i < index - 1; i++) {
+        actual = actual->next;
+    }
+
+    Node *remove = actual->next;
+
+    actual->next = remove->next;
+
+    free(remove);
 }
 
 void printList (List list) {
@@ -91,6 +113,11 @@ int main () {
     printList(list01);
 
     insertIndex(7, 2, &list01);
+    printList(list01);
 
+    removeIndex(0, &list01);
+    printList(list01);
+
+    removeIndex(3, &list01);
     printList(list01);
 }
