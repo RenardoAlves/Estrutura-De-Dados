@@ -73,6 +73,24 @@ void insertIndex (int n, int index, DoublyLinkedList *list) {
     actual->previous->next = new;
 }
 
+void removeIndex (int index, DoublyLinkedList *list) {
+
+    if (index == 0) {
+        list->first = list->first->next;
+        list->first->previous = NULL;
+        return;
+    }
+
+    Node *remove = list->first;
+
+    for (int i = 0; i < index; i++) {
+        remove = remove->next;
+    }
+
+    remove->next->previous = remove->previous;
+    remove->previous->next = remove->next;
+}
+
 void printList (DoublyLinkedList list) {
     while (list.first != NULL) {
         printf("[%d]  ", list.first->value);
@@ -103,5 +121,11 @@ int main () {
     printList(list01);
 
     insertIndex(21, 2, &list01);
+    printList(list01);
+
+    removeIndex(0, &list01);
+    printList(list01);
+
+    removeIndex(3, &list01);
     printList(list01);
 }
