@@ -58,17 +58,17 @@ int max (int a, int b) {
     return (a > b) ? a : b;
 }
 
-int calculateHeight (BST *tree, int i) {
+int getNodeHeight (BST *tree, int i) {
     if (i >= SIZE || tree->used[i] == 0) return -1;
 
-    int h_left = calculateHeight(tree, 2 * i + 1);
-    int h_right = calculateHeight(tree, 2 * i + 2);
+    int h_left = getNodeHeight(tree, 2 * i + 1);
+    int h_right = getNodeHeight(tree, 2 * i + 2);
 
     return 1 + max(h_left, h_right);
 }
 
-int getHeight (BST *tree) {
-    return calculateHeight(tree, 0);
+int getTreeHeight (BST *tree) {
+    return getNodeHeight(tree, 0);
 }
 
 void inOrder (BST *tree, int i) {
@@ -126,9 +126,16 @@ int main () {
     postOrder(&tree, 0);
     printf("\n");
 
-    int height = getHeight(&tree);
+    int height = getTreeHeight(&tree);
 
     printf("Altura da arvore: %d", height);
+    printf("\n");
+
+    int targetNode = 2;
+    int nodeHeight = getNodeHeight(&tree, targetNode);
+
+    printf("Altura do no %d: %d", targetNode, nodeHeight);
+    printf("\n");
 
     return 0;
 }
